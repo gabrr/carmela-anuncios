@@ -17,7 +17,7 @@ export const Details = ({ doctype }: DetailsProps) => {
 
   return (
     <Container open={open}>
-      <h4>{documents[doctype].title} 2022</h4>
+      <h4>{documents[doctype].title}</h4>
 
       <div className="img_container">
         <img
@@ -50,8 +50,8 @@ const Container = styled.div<{ open: boolean }>`
   }
 
   img {
-    width: 100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     border-radius: 10px;
   }
 `;

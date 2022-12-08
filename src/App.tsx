@@ -8,8 +8,8 @@ function App() {
       <Header />
 
       <div className="row">
-        <Details doctype="indicadores" />
         <Details doctype="presidentes_leitors" />
+        <Details doctype="indicadores" />
       </div>
     </Div>
   );
