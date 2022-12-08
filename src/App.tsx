@@ -7,11 +7,25 @@ function App() {
     <Div>
       <Header />
 
-      <Details doctype="indicadores" />
+      <div className="row">
+        <Details doctype="indicadores" />
+        <Details doctype="presidentes_leitors" />
+      </div>
     </Div>
   );
 }
 
-const Div = styled.div``;
+const Div = styled.div`
+  width: 95%;
+  margin: auto;
+  margin-top: 20px;
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+`;
 
 export default App;

@@ -1,22 +1,57 @@
 import styled from "styled-components";
 import { documents } from "../../documents";
-import { Document, Page } from 'react-pdf';
+import { useEffect, useState } from "react";
 
 interface DetailsProps {
-  doctype: "indicadores" | "presidentes/leitores";
+  doctype: "indicadores" | "presidentes_leitors";
 }
 
 export const Details = ({ doctype }: DetailsProps) => {
-  return (
-    <Container>
-      <summary>{documents[doctype].title}</summary>
-      
-      <Document file="">
-        <Page />
-      </Document>
+  const [open, setOpen] = useState(false);
 
+  const toggle = () => setOpen((prev) => !prev);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "scroll";
+  }, [open]);
+
+  return (
+    <Container open={open}>
+      <h4>{documents[doctype].title} 2022</h4>
+
+      <div className="img_container">
+        <img
+          src={documents[doctype].docUrl}
+          onClick={toggle}
+          alt="tabela de indicadores"
+        />
+      </div>
     </Container>
   );
 };
 
-const Container = styled.details``;
+const Container = styled.div<{ open: boolean }>`
+  width: 100%;
+  margin: 0 auto;
+
+  h4 {
+    margin-bottom: 5px;
+  }
+
+  .img_container {
+    overflow: scroll;
+    position: ${({ open }) => (open ? "fixed" : "static")};
+    transition: width ease-in-out 300ms;
+    top: ${({ open }) => (open ? "20px" : "auto")};
+    left: ${({ open }) => (open ? "2.5vw" : "auto")};
+    width: ${({ open }) => (open ? "95vw" : "100%")};
+    height: ${({ open }) => (open ? "85vh" : "30vh")};
+    border-radius: 10px;
+  }
+
+  img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+`;
